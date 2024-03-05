@@ -1,0 +1,169 @@
+@import url('/assets/fonts/poppins/poppins.css');
+
+:root {
+    --first-color: hsl(79, 100%, 49%);
+    --white-color: #FFF;
+    --black-color: #000;
+    
+    --font-body: "Poppins", sans-serif;
+    --normal-font-size: 1.5rem;
+    --tiny-font-size: 0.9rem
+}
+
+@media screen and ( min-width: 968px ) {
+    :root {
+        --tiny-font-size: 1rem;
+    }
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--normal-font-size);
+    background-color: var(--white-color);
+}
+
+/* ===== ===== ===== FORM ===== ===== ===== */
+.form {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    margin: 0, 2.4rem;
+}
+
+.form__content {
+    display: grid;
+    row-gap: 2.4rem;
+    max-width: 36rem;
+}
+
+.form__input,
+.form__label,
+.form__submit {
+    border: 0;
+    outline: none;
+    font-size: var(--normal-font-size);
+    font-family: var(--font-body);
+}
+
+.form__box {
+    width: 30.12rem;
+    height: 5.9rem;
+    position: relative;
+}
+
+.form__shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color);
+}
+
+.form__input {
+    position: absolute;
+    border: 0.25rem solid var(--black-color);
+    background-color: var(--white-color);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    padding: 1.8rem;
+    transition: transform 0.3s;
+}
+
+.form__input::placeholder {
+    transition: opacity 0.5s;
+}
+
+.form__label {
+    z-index: 100;
+    position: absolute;
+    inset-block-start: 1.6rem;
+    inset-inline-start: 2rem;
+    font-weight: 600;
+    transition: 0.5s;
+    pointer-events: none;
+    font-size: var(--tiny-font-size);
+    opacity: 0;
+}
+
+.form__button {
+    justify-self: flex-end;
+    background-color: var(--black-color);
+}
+
+.form__submit {
+    padding: 1.5rem 2.5rem;
+    color: var(--black-color);
+    background-color: var(--first-color);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.form__submit:hover {
+    transform: translate(-0.6rem, -0.6rem)
+}
+
+
+/* Opacar placeholder */
+.form__input:focus::placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* Mover input y fijar label arriba */
+.form__input:focus,
+.form__input:not(:placeholder-shown).form__input:not(:focus) {
+    transform: translate(-0.8rem, -0.8rem);
+    padding: 2.8rem 1.8rem 1.8rem;
+    animation: input-animation 0.5s;
+}
+
+.form__input:focus + .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {
+    opacity: 1;
+    inset-block-start: 0rem;
+    inset-inline-start: 1.1rem;
+    transition: 0.3s;
+}
+
+
+/* ===== ===== ===== ANIMACIONES ===== ===== ===== */
+
+@keyframes input-animation {
+    0% {
+        transform: translate(0);
+    }
+    40% {
+        transform: translate(-0.9rem, -0.9rem);
+    }
+    60% {
+        transform: translate(-0.7rem, -0.7rem);
+    }
+
+}
+
+/* ===== ===== ===== BREAK POINTS ===== ===== ===== */
+
+@media screen and ( min-width: 360px ) {
+    .form__content,
+    .form__box {
+        width: 100%;
+    }   
+}
+
+/* Para pantallas muy grandes */
+
+@media screen and ( min-width: 960px ) {
+    .form__content {
+        zoom: 1.1;
+    }
+}
